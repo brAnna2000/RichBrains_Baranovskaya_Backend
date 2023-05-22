@@ -5,9 +5,10 @@ const fs = require('fs');
 
 module.exports = class Client {
 
-  constructor(name, surname, age, phone) {
+  constructor(name, surname, country, age, phone) {
     this.name = name;
     this.surname = surname;
+    this.country = country;
     this.age = age;
     this.phone = phone;
     this.id = shortid.generate();
@@ -16,6 +17,7 @@ module.exports = class Client {
   returnThisUser = () => ({
     name: this.name,
     surname: this.surname,
+    country: this.country,
     age: this.age,
     phone: this.phone,
     id: this.id,

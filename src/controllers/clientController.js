@@ -1,4 +1,4 @@
-const Client = require("../models/Client.js");
+const Client = require("../models/client.js");
 const CONST = require("../const/const");
 const utils = require("../utils/utils");
 const fs = require('fs');
@@ -83,8 +83,8 @@ exports.deleteUser = (request, response) => {
 };
 
 exports.addUser = (request, response) => {
-  const { name, surname, age, phone } = request.body;
-  const isEmptyParam = Client.checkParams(response, { name, surname, age, phone });
+  const { name, surname, country, age, phone } = request.body;
+  const isEmptyParam = Client.checkParams(response, { name, surname, country, age, phone });
   if (isEmptyParam) {
     return
   }
@@ -93,7 +93,7 @@ exports.addUser = (request, response) => {
     if (isExists) {
       response.status(CONST.RESP_STATUS.ERROR).json(utils.returnErrorMsg(CONST.ERROR_MSGS.CLIENTS.DUPLICATE));
     } else {
-      const newClient = new Client(name, surname, age, phone);
+      const newClient = new Client(name, surname, country, age, phone);
       newClient.addUser(r);
       response.status(CONST.RESP_STATUS.OK).json({ client: newClient.returnThisUser() });
     }
